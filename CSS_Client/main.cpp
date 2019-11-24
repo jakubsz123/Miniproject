@@ -58,11 +58,13 @@ int main(int argc, char* argv[]) // makes it able to input command lines
 	WSADATA data;
 	WORD version = MAKEWORD(2, 2);
 	int wsOK = WSAStartup(version, &data);
+	// Check if the startup was sucessful otherwise print an error message
 	if (wsOK != 0) {
 		std::cout << "Cant start socket" << wsOK;
-		return;
+		return 0;
 	}
 
+	// Getting the client to know about the server
 	sockaddr_in server;
 	server.sin_family = AF_INET;
 	server.sin_port = htons(4500);
@@ -90,15 +92,19 @@ int main(int argc, char* argv[]) // makes it able to input command lines
 
 		std::string s(selection);
 
-		int sendOK = sendto(out, s.c_str(), s.size, 0, (sockaddr*)&server, serverLength);
+		// Store the code for if the message was sent or not, but also send the message to the server using the port out
+		int sendOK = sendto(out, s.c_str(), s.size() + 1, 0, (sockaddr*)&server, serverLength);
 
+		// Checks if sending the message was successful else print error message
 		if (sendOK == SOCKET_ERROR) {
 			std::cout << "That didn't work" << WSAGetLastError();
 		}
 
 		std::cout << "It's opponent's turn, please wait..." << std::endl;
 
+		// Clear out the buffer to make it ready to receive a message from the server
 		ZeroMemory(buf, DEFAULT_BUFLEN);
+		// Store the code for if a message was successfully received, and stores the message in the buffer
 		int bytesIn = recvfrom(out, buf, DEFAULT_BUFLEN, 0, (sockaddr*)&server, &serverLength);
 		if (bytesIn == SOCKET_ERROR)
 		{
