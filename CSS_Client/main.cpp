@@ -17,9 +17,9 @@
 
 using namespace std;
 
-int main(int argc, char* argv[]) // makes it able to input command lines 
+int main(int argc, char* argv[]) // makes it able to input command lines
 {
-	// start up the winsocket 
+	// start up the winsocket
 	WSADATA data;
 	WORD version = MAKEWORD(2, 2);
 	int wsOK = WSAStartup(version, &data);
