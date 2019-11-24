@@ -12,7 +12,6 @@
 
 #pragma comment (lib, "ws2_32.lib")
 
-#define DEFAULT_BUFLEN 512
 #define DEFAULT_PORT "27015"
 #define BACKLOG 10
 
