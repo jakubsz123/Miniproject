@@ -156,6 +156,22 @@ int main()
 			std::cout << "That didn't work" << WSAGetLastError();
 		}
 
+		if (buf[0] == 'q' || selection == "quit") {
+			gameOver = true;
+		}
+		else {
+			int result = decideWinner(selection, buf);
+			if (result == -1) {
+				std::cout << "The opponent chose " << buf << ". That beats " << selection << ", so you lose." << std::endl;
+			}
+			else if (result == 1) {
+				std::cout << "The opponent chose " << buf << ", but that was wrong, you win. Well done. Good job. You're amazing." << std::endl;
+			}
+			else {
+				std::cout << "It's a draw, because you chose the same thing as the opponent. You draw." << std::endl;
+			}
+		}
+
 	}
 
 	//clean the socket and terminate the program
