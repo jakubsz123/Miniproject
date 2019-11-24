@@ -16,6 +16,43 @@
 #define DEFAULT_PORT "27015"
 #define BACKLOG 10
 
+//function that chooses the winner based on the server's and client's choice; 1: win, 0: draw, -1: lose
+int decideWinner(std::string me, const char* opponent) {
+	if (me == "rock") {
+		if (opponent[0] == 'r') {
+			return 0;
+		}
+		else if (opponent[0] == 'p') {
+			return -1;
+		}
+		else {
+			return 1;
+		}
+	}
+	else if (me == "paper") {
+		if (opponent[0] == 'p') {
+			return 0;
+		}
+		else if (opponent[0] == 's') {
+			return -1;
+		}
+		else {
+			return 1;
+		}
+	}
+	else {
+		if (opponent[0] == 's') {
+			return 0;
+		}
+		else if (opponent[0] == 'r') {
+			return -1;
+		}
+		else {
+			return 1;
+		}
+	}
+}
+
 
 int main()
 {
