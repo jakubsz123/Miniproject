@@ -67,7 +67,7 @@ int main(int argc, char* argv[]) // makes it able to input command lines
 	// Getting the client to know about the server
 	sockaddr_in server;
 	server.sin_family = AF_INET;
-	server.sin_port = htons(4500);
+	server.sin_port = htons(54000);
 	inet_pton(AF_INET, "127.0.0.1", &server.sin_addr);
 
 	int serverLength = sizeof(server);
