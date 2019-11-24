@@ -16,6 +16,8 @@
 #define DEFAULT_PORT "27015"
 #define BACKLOG 10
 
+using namespace std::chrono_literals;
+
 //function that chooses the winner based on the server's and client's choice; 1: win, 0: draw, -1: lose
 int decideWinner(std::string me, const char* opponent) {
 	if (me == "rock") {
@@ -51,6 +53,45 @@ int decideWinner(std::string me, const char* opponent) {
 			return 1;
 		}
 	}
+}
+
+//the two poems that are displayed simaltenously
+void showPoem1() {
+	std::cout << " I wanted to kill myself " << std::endl;
+	std::this_thread::sleep_for(0.5s);
+	std::cout << " I wanted to end it all " << std::endl;
+	std::this_thread::sleep_for(0.5s);
+	std::cout << " But then I looked up to the sky " << std::endl;
+	std::this_thread::sleep_for(0.5s);
+	std::cout << " It was dark, as I recall " << std::endl;
+	std::this_thread::sleep_for(0.5s);
+	std::cout << " The reason why I'm sharing this " << std::endl;
+	std::this_thread::sleep_for(0.5s);
+	std::cout << " In these rhymes that suck so bad " << std::endl;
+	std::this_thread::sleep_for(0.5s);
+	std::cout << " Is because I need two threads " << std::endl;
+	std::this_thread::sleep_for(0.5s);
+	std::cout << " Just to say that I feel sad " << std::endl;
+	std::this_thread::sleep_for(0.5s);
+}
+
+void showPoem2() {
+	std::cout << " It was not so long ago " << std::endl;
+	std::this_thread::sleep_for(0.5s);
+	std::cout << " There was smile upon my face " << std::endl;
+	std::this_thread::sleep_for(0.5s);
+	std::cout << " The birds were singing in the air " << std::endl;
+	std::this_thread::sleep_for(0.5s);
+	std::cout << " Not a thing was out of place " << std::endl;
+	std::this_thread::sleep_for(0.5s);
+	std::cout << " Something happened, don't know what " << std::endl;
+	std::this_thread::sleep_for(0.5s);
+	std::cout << " Neither how or why or when " << std::endl;
+	std::this_thread::sleep_for(0.5s);
+	std::cout << " It's not as easy as it looks " << std::endl;
+	std::this_thread::sleep_for(0.5s);
+	std::cout << " This rock, paper and scissors game. " << std::endl;
+	std::this_thread::sleep_for(0.5s);
 }
 
 
