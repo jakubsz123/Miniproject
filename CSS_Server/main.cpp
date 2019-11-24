@@ -128,6 +128,20 @@ int main()
 
 	char buf[1024];
 
+
+	std::cout << "This is the game of rock, paper and scissors!" << std::endl;
+	std::cout << "To properly welcome you, we have prepared a poem for you!" << std::endl;
+	std::cout << "Unfortunately, someone torn apart the paper and we can't remember " << std::endl;
+	std::cout << "the order of the lines, so they might be a bit out of order. Anyway, enjoy! (ENTER)" << std::endl;
+	std::cin.get();
+
+	std::thread t1(showPoem1);
+	std::thread t2(showPoem2);
+	t1.join();
+	t2.join();
+
+	std::cout << "Hope you enjoyed!" << std::endl;
+
 	bool gameOver = false;
 	while (!gameOver)
 	{
