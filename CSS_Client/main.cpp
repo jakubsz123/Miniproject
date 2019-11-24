@@ -60,12 +60,12 @@ int main(int argc, char* argv[]) // makes it able to input command lines
 	int wsOK = WSAStartup(version, &data);
 	if (wsOK != 0) {
 		std::cout << "Cant start socket" << wsOK;
-		return;
+		return 0;
 	}
 
 	sockaddr_in server;
 	server.sin_family = AF_INET;
-	server.sin_port = htons(4500);
+	server.sin_port = htons(54000);
 	inet_pton(AF_INET, "127.0.0.1", &server.sin_addr);
 
 	int serverLength = sizeof(server);
@@ -90,7 +90,7 @@ int main(int argc, char* argv[]) // makes it able to input command lines
 
 		std::string s(selection);
 
-		int sendOK = sendto(out, s.c_str(), s.size, 0, (sockaddr*)&server, serverLength);
+		int sendOK = sendto(out, s.c_str(), s.size() + 1, 0, (sockaddr*)&server, serverLength);
 
 		if (sendOK == SOCKET_ERROR) {
 			std::cout << "That didn't work" << WSAGetLastError();
