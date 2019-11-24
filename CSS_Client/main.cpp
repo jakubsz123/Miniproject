@@ -15,8 +15,6 @@
 
 #define DEFAULT_ADDRESS "localhost"
 
-using namespace std;
-
 int main(int argc, char* argv[]) // makes it able to input command lines
 {
 	// start up the winsocket
@@ -24,7 +22,7 @@ int main(int argc, char* argv[]) // makes it able to input command lines
 	WORD version = MAKEWORD(2, 2);
 	int wsOK = WSAStartup(version, &data);
 	if (wsOK != 0) {
-		cout << "Cant start socket" << wsOK;
+		std::cout << "Cant start socket" << wsOK;
 		return;
 	}
 
@@ -44,16 +42,16 @@ int main(int argc, char* argv[]) // makes it able to input command lines
 	bool running = true;
 	while (running == true) {
 		// Write out that socket
-		string s = "";
-		cin.get >> s;
+		std::string s = "";
+		std::cin.get >> s;
 		int sendOK = sendto(out, s.c_str(), s.size, 0, (sockaddr*)&server, serverLength);
 
 		if (sendOK == SOCKET_ERROR) {
-			cout << "That didn't work" << WSAGetLastError();
+			std::cout << "That didn't work" << WSAGetLastError();
 		}
 
-		ZeroMemory(buf, 1024);
-		int bytesIn = recvfrom(out, buf, 1024, 0, (sockaddr*)&server, &serverLength);
+		ZeroMemory(buf, DEFAULT_BUFLEN);
+		int bytesIn = recvfrom(out, buf, DEFAULT_BUFLEN, 0, (sockaddr*)&server, &serverLength);
 		if (bytesIn == SOCKET_ERROR)
 		{
 			std::cout << "Error receiving from server " << WSAGetLastError() << std::endl;
